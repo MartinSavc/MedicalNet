@@ -64,6 +64,11 @@ def parse_opts():
         type=int,
         help='Input size of width')
     parser.add_argument(
+        '--random_flip',
+        action='store_true',
+        default=False,
+        help='If true, training data is randomly flipped.')
+    parser.add_argument(
         '--resume_path',
         default='',
         type=str,
@@ -72,7 +77,7 @@ def parse_opts():
     )
     parser.add_argument(
         '--pretrain_path',
-        default='pretrain/resnet_50.pth',
+        default=None,
         type=str,
         help=
         'Path for pretrained model.'

@@ -34,7 +34,6 @@ def train(data_loader, model, optimizer, scheduler, total_epochs, save_interval,
     for epoch in range(total_epochs):
         log.info('Start epoch {}'.format(epoch))
         
-        scheduler.step()
         log.info('lr = {}'.format(scheduler.get_lr()))
         
         for batch_id, batch_data in enumerate(data_loader):
@@ -67,6 +66,7 @@ def train(data_loader, model, optimizer, scheduler, total_epochs, save_interval,
             loss = loss_value_seg
             loss.backward()                
             optimizer.step()
+            scheduler.step()
 
             avg_batch_time = (time.time() - train_time_sp) / (1 + batch_id_sp)
             log.info(

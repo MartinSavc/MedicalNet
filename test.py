@@ -62,7 +62,7 @@ def test(data_loader, model, img_names, sets):
         data = nib.load(os.path.join(sets.data_root, img_names[batch_id]))
         data = data.get_data()
         [depth, height, width] = data.shape
-        mask = probs[0]
+        mask = probs[0].cpu()
         scale = [1, depth*1.0/mask_d, height*1.0/mask_h, width*1.0/mask_w]
         mask = ndimage.interpolation.zoom(mask, scale, order=1)
         mask = np.argmax(mask, axis=0)
